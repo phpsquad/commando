@@ -34,7 +34,7 @@ class MakeCommand extends Command
 
     protected function createCommandFile(string $commandName, OutputInterface $output): void
     {
-        copy('./src/App/stubs/command.stub', "./src/Commands/$commandName.php");
+        copy(dirname(__FILE__, 2).'/stubs/command.stub', "./src/Commands/$commandName.php");
 
         $str = file_get_contents("./src/Commands/$commandName.php");
 

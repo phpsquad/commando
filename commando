@@ -1,7 +1,13 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__.'/vendor/autoload.php';
+if(file_exists(__DIR__.'/vendor/autoload.php')){
+    require __DIR__.'/vendor/autoload.php';
+}
+
+if (file_exists(dirname(__FILE__, 3)  .'/autoload.php')){
+    require dirname(__FILE__, 3)  .'/autoload.php';
+}
 
 use PhpSquad\App\CommandContainer;
 use PhpSquad\App\Kernel;
