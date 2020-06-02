@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+use PhpSquad\App\CommandContainer;
+use PhpSquad\App\Kernel;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$container = new CommandContainer();
+$kernel = new Kernel($container);
+
+$kernel->registerCommands($application);
+$application->run();

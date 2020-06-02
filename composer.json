@@ -1,0 +1,27 @@
+{
+    "name": "phpsquad/commando",
+    "description": "A php command generator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Rohrig",
+            "email": "richard.t.rohrig@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PhpSquad\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpSquad\\Commando\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "symfony/console": "^5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.1"
+    }
+}
