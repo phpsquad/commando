@@ -34,6 +34,8 @@ class MakeCommand extends Command
 
     protected function createCommandFile(string $commandName, OutputInterface $output): void
     {
+        $this->ensureCommandDirectoryExists();
+
         copy(dirname(__FILE__, 2).'/stubs/command.stub', "./src/Commands/$commandName.php");
 
         $str = file_get_contents("./src/Commands/$commandName.php");
@@ -43,5 +45,17 @@ class MakeCommand extends Command
         file_put_contents("./src/Commands/$commandName.php", $str);
 
         $output->writeln("<info>$commandName is now available in the Commands directory</info>");
+    }
+
+    public function ensureCommandDirectoryExists()
+    {
+        if(!file_exists("./src")){
+            exec("mkdir ./src");
+        }
+
+        if(!file_exists("./src/Commands")){
+            exec("mkdir ./src/Commands");
+        }
+
     }
 }
