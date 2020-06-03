@@ -56,6 +56,5 @@ class MakeCommand extends Command
         if(!file_exists("./src/Commands")){
             exec("mkdir ./src/Commands");
         }
-
     }
 }

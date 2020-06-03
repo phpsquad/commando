@@ -6,6 +6,23 @@ use Exception;
 use ReflectionClass;
 use ReflectionException;
 
+if(file_exists(__DIR__.'/vendor/autoload.php')){
+    require __DIR__.'/vendor/autoload.php';
+}
+
+if (file_exists(dirname(__FILE__, 3)  .'/autoload.php')){
+    require dirname(__FILE__, 3)  .'/autoload.php';
+}
+if (file_exists(dirname(__FILE__, 6).'/src/Commands')){
+    foreach (scandir(dirname(__FILE__, 6)  .'/src/Commands') as $filename) {
+        $path = dirname(__FILE__, 6)  .'/src/Commands' . '/' . $filename;
+        if (is_file($path)) {
+            require $path;
+        }
+    }
+}
+
+
 class CommandContainer
 {
     public array $bindings = [];
@@ -29,7 +46,7 @@ class CommandContainer
             return $reflection->newInstanceArgs($dependencies);
 
         }catch (Exception $exception){
-            throw new ReflectionException('Could not resolve class Dependencies for '.': ' . $abstract);
+            throw new ReflectionException('Could not resolve class Dependencies for '.': ' . $abstract . $exception->getMessage());
         }
 
     }
@@ -52,7 +69,7 @@ class CommandContainer
             $className = $param->getClass();
 
             if (!$className) {
-               return $this->getDefaultValue($param);
+                return $this->getDefaultValue($param);
             }
 
             $className = $param->getClass()->getName();
