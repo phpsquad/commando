@@ -23,6 +23,10 @@ class Kernel
 
         $this->registerForemanCommands($application);
 
+        if (!file_exists(dirname(__FILE__, 2)  .'/Commands')){
+                return true;
+        }
+
         if ($handle = opendir(dirname(__FILE__, 2)  .'/Commands')) {
 
             $classes = [];
