@@ -12,6 +12,7 @@ class MakeCommand extends Command
 
     protected function configure()
     {
+        //comment
         $this->setDescription('Make Command.')->setHelp('example: php foreman make:command MyCommand');
         $this->addArgument('commandName');
     }
